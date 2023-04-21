@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
   },
   downContainer: {
     height: "100%",
+    alignItems: "center",
     backgroundColor: "#1A1A1A",
   },
   form: {
@@ -27,6 +28,7 @@ export const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 16,
     fontSize: 16,
+    textDecorationLine: "none",
     color: "#D9D9D9",
     backgroundColor: "#262626",
   },
@@ -38,5 +40,50 @@ export const styles = StyleSheet.create({
     backgroundColor: "#1E6F9F",
     alignItems: "center",
     justifyContent: "center",
+  },
+  info: {
+    width: "82%",
+    marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  infoCreate: {
+    width: "50%",
+    flexDirection: "row",
+  },
+  infoComplete: {
+    width: "50%",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+  },
+  textCreate: {
+    marginRight: 5,
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#4EA8DE",
+  },
+  textComplete: {
+    marginRight: 5,
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#8284FA",
+  },
+  numberCreate: {
+    color: "#D9D9D9",
+    backgroundColor: "#333333",
+  },
+  numberInfo: {
+    width: 25,
+    height: 19,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 2,
+    paddingHorizontal: 9,
+    borderRadius: 999,
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#D9D9D9",
+    backgroundColor: "#333333",
   },
 });
