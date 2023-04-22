@@ -5,20 +5,38 @@ import { Tasks } from "../../components/Task/index";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
+type taskProps = {
+  id: string;
+  text: string;
+  selected: boolean;
+};
+
 export default function Home() {
-  const [countCreate, setcountCreate] = useState<Number>(0);
-  const [countComplete, setcountComplete] = useState<Number>(0);
+  const [countCreate, setcountCreate] = useState<number>(0);
+  const [countComplete, setcountComplete] = useState<number>(0);
   const [text, setText] = useState("");
-  const [task, setTask] = useState<string[]>([]);
+  const [task, setTask] = useState<taskProps[]>([]);
 
   function handleTaskAdd(text: string) {
     if (text != "") {
-      setTask((task) => [...task, text]);
-      console.log("Task:", task);
-      console.log("Text:", text);
+      const newTask = {
+        id: text,
+        text: text,
+        selected: false,
+      };
+      setTask((task) => [...task, newTask]);
+      setcountCreate(countCreate + 1);
     }
   }
-
+  function counTask(checked: boolean) {
+    if (checked == false) {
+      setcountCreate(countCreate - 1);
+      setcountComplete(countComplete + 1);
+    } else {
+      setcountCreate(countCreate + 1);
+      setcountComplete(countComplete - 1);
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.upContainer}>
@@ -42,7 +60,9 @@ export default function Home() {
         <View style={styles.info}>
           <View style={styles.infoCreate}>
             <Text style={styles.textCreate}>Criadas</Text>
-            <Text style={styles.numberInfo}>{countCreate}</Text>
+            <Text style={styles.numberInfo}>
+              <Text style={styles.numberInfo}>{countCreate}</Text>
+            </Text>
           </View>
           <View style={styles.infoComplete}>
             <Text style={styles.textComplete}>Concluídas</Text>
@@ -52,8 +72,10 @@ export default function Home() {
         <View style={styles.list}>
           <FlatList
             data={task}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => <Tasks key={item} text={item} />}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <Tasks key={item.id} text={item.text} counTask={counTask} />
+            )}
             showsVerticalScrollIndicator={false}
             ListEmptyComponent={() => (
               <View style={styles.emptyAlert}>
