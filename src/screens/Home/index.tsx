@@ -1,6 +1,7 @@
-import { Text, TextInput, View, Image } from "react-native";
+import { Text, TextInput, View, Image, FlatList } from "react-native";
 import { styles } from "./styles";
 import { TouchableOpacity } from "react-native";
+import { Tasks } from "../../components/index";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -33,6 +34,25 @@ export default function Home() {
             <Text style={styles.textComplete}>Concluídas</Text>
             <Text style={styles.numberInfo}>{countComplete}</Text>
           </View>
+        </View>
+        <View style={styles.list}>
+          <FlatList
+            data={[]}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => <Tasks />}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => (
+              <View style={styles.emptyAlert}>
+                <Image source={require("../../../assets/Clipboard.png")} />
+                <Text style={styles.alertEmptyText}>
+                  Você ainda não tem tarefas cadastradas
+                </Text>
+                <Text style={styles.alertEmptyTextSuggestion}>
+                  Crie tarefas e organize seus itens a fazer
+                </Text>
+              </View>
+            )}
+          />
         </View>
       </View>
     </View>
