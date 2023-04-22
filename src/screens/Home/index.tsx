@@ -19,13 +19,25 @@ export default function Home() {
 
   function handleTaskAdd(text: string) {
     if (text != "") {
-      const newTask = {
-        id: text,
-        text: text,
-        selected: false,
-      };
-      setTask((task) => [...task, newTask]);
-      setcountCreate(countCreate + 1);
+      if (task.filter((tasks) => tasks.id == text).length == 0) {
+        const newTask = {
+          id: text,
+          text: text,
+          selected: false,
+        };
+        setTask((task) => [...task, newTask]);
+        setcountCreate(countCreate + 1);
+      }
+    }
+  }
+  function handleTaskRemove(id: string, checked: boolean) {
+    const newTask = task.filter((tasks) => tasks.id != id);
+
+    setTask(newTask);
+    if (checked == true) {
+      setcountComplete(countComplete - 1);
+    } else {
+      setcountCreate(countCreate - 1);
     }
   }
   function counTask(checked: boolean) {
@@ -60,9 +72,7 @@ export default function Home() {
         <View style={styles.info}>
           <View style={styles.infoCreate}>
             <Text style={styles.textCreate}>Criadas</Text>
-            <Text style={styles.numberInfo}>
-              <Text style={styles.numberInfo}>{countCreate}</Text>
-            </Text>
+            <Text style={styles.numberInfo}>{countCreate}</Text>
           </View>
           <View style={styles.infoComplete}>
             <Text style={styles.textComplete}>Concluídas</Text>
@@ -74,7 +84,13 @@ export default function Home() {
             data={task}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <Tasks key={item.id} text={item.text} counTask={counTask} />
+              <Tasks
+                key={item.id}
+                idTask={item.id}
+                text={item.text}
+                counTask={counTask}
+                onRemove={handleTaskRemove}
+              />
             )}
             showsVerticalScrollIndicator={false}
             ListEmptyComponent={() => (
