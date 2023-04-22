@@ -58,13 +58,13 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textCreate: {
-    marginRight: 5,
+    marginRight: 8,
     fontSize: 14,
     fontWeight: "700",
     color: "#4EA8DE",
   },
   textComplete: {
-    marginRight: 5,
+    marginRight: 8,
     fontSize: 14,
     fontWeight: "700",
     color: "#8284FA",
@@ -85,5 +85,26 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#D9D9D9",
     backgroundColor: "#333333",
+  },
+  list: {
+    marginTop: 20,
+  },
+  emptyAlert: {
+    padding: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    borderTopWidth: 2,
+    borderTopColor: "#333333",
+  },
+  alertEmptyText: {
+    marginTop: 20,
+    fontSize: 14,
+    color: "#808080",
+    fontWeight: "700",
+  },
+  alertEmptyTextSuggestion: {
+    fontSize: 14,
+    color: "#808080",
+    fontWeight: "400",
   },
 });
