@@ -1,0 +1,52 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  container: {
+    width: 327,
+    height: 64,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#262626",
+    borderWidth: 1,
+    borderColor: "#333333",
+    marginBottom: 8,
+  },
+  checkboxUnchecked: {
+    width: 20,
+    height: 20,
+    borderRadius: 100,
+    padding: 4,
+    alignContent: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "#4EA8DE",
+  },
+  textTask: {
+    flex: 1,
+    marginHorizontal: 12,
+    fontSize: 14,
+    fontWeight: "400",
+    color: "#F2F2F2",
+  },
+  checkboxChecked: {
+    width: 20,
+    height: 20,
+    borderRadius: 100,
+    padding: 4,
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "#5E60CE",
+  },
+  textTaskComplete: {
+    flex: 1,
+    marginHorizontal: 12,
+    fontSize: 14,
+    textDecorationLine: "line-through",
+    fontWeight: "400",
+    color: "#808080",
+  },
+});
