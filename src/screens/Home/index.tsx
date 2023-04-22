@@ -1,13 +1,23 @@
 import { Text, TextInput, View, Image, FlatList } from "react-native";
 import { styles } from "./styles";
 import { TouchableOpacity } from "react-native";
-import { Tasks } from "../../components/index";
+import { Tasks } from "../../components/Task/index";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default function Home() {
   const [countCreate, setcountCreate] = useState<Number>(0);
   const [countComplete, setcountComplete] = useState<Number>(0);
+  const [text, setText] = useState("");
+  const [task, setTask] = useState<string[]>([]);
+
+  function handleTaskAdd(text: string) {
+    if (text != "") {
+      setTask((task) => [...task, text]);
+      console.log("Task:", task);
+      console.log("Text:", text);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -20,8 +30,12 @@ export default function Home() {
             style={styles.input}
             placeholder="Adcione uma nova tarefa"
             placeholderTextColor="#808080"
+            onChangeText={setText}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleTaskAdd(text)}
+          >
             <Icon name="add-circle-outline" color="#ffffff" size={20} />
           </TouchableOpacity>
         </View>
@@ -37,9 +51,9 @@ export default function Home() {
         </View>
         <View style={styles.list}>
           <FlatList
-            data={[]}
+            data={task}
             keyExtractor={(item) => item}
-            renderItem={({ item }) => <Tasks />}
+            renderItem={({ item }) => <Tasks key={item} text={item} />}
             showsVerticalScrollIndicator={false}
             ListEmptyComponent={() => (
               <View style={styles.emptyAlert}>
